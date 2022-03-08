@@ -37,7 +37,6 @@ if [ "${COD_GAME}" == "mod" ]; then
      echo "---| Please be sure you upload all needed mod files and create the configs."
      echo "---| Change the Startup ENV to your mods's needings."
      echo "---| Server will start in 3 Seconds."
-     wait 3
      cd /gameserver/
      ./cod4_lnxded_${COD_VERSION} +set fs_basepath /gameserver ${STARTUP}
 fi

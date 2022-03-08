@@ -6,7 +6,7 @@ FROM ubuntu:focal
 
 LABEL maintainer="fistwho@forgotten-games.net"
 
-ENV STARTUP="+set fs_homepath config/server1 +set fs_savepath config/server1 +set dedicated 2 +set net_ip 0.0.0.0 +set net_port "28960" +exec server.cfg +map_rotate"
+ENV STARTUP="+set fs_homepath config/default +set fs_savepath config/default +set dedicated 2 +set net_ip 0.0.0.0 +set net_port "28960" +exec server.cfg +map_rotate"
 ENV COD_GAME="nomod"
 ENV COD_VERSION="1_7"
 

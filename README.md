@@ -22,10 +22,12 @@ For a fast start simply
       -v <your/path/to/game/>:/gameserver \
       -v <your/path/to/game/>:/config \
       -e COD_VERSION="1_7" \
-      -e COD_GAME="main" \
-      -e STARTUP="+set fs_homepath config/server1 +set fs_savepath config/server1 +set dedicated 2 +set net_ip 0.0.0.0 +set net_port "28960" +exec server.cfg +map_rotate" \
+      -e COD_GAME="nomod" \
+      -e STARTUP="+set fs_homepath config/default +set fs_savepath config/default +set dedicated 2 +set net_ip 0.0.0.0 +set net_port "28960" +exec server.cfg +map_rotate" \
     keinnerd/cod4docker:latest
 ```
+Then Check the `server.cfg` in the `config/default` dir. 
+
 
 ## 🔧 Envs
 
@@ -33,22 +35,22 @@ For a fast start simply
 |----------------|-------------------------------|-----------------------------|
 |COD_VERSION     | Basic: `1_7` or `1_8` | Choose your Game Version|
 |COD_GAME        | `nomod` or `mod` |`nomod` = Call of Duty 4 Vanilla / `mod` = Call of Duty 4 with Mod Options|
-|STARTUP         | "`+set fs_homepath config/server1 +set fs_savepath config/server1 +set dedicated 2 +set net_ip 0.0.0.0 +set net_port "28960" +exec server.cfg +map_rotate`" | Adjust your Start command (fs_basepath is hardcoded to /gameserver)
+|STARTUP         | "`+set fs_homepath config/default +set fs_savepath config/default +set dedicated 2 +set net_ip 0.0.0.0 +set net_port "28960" +exec server.cfg +map_rotate`" | Adjust your Start command (fs_basepath is hardcoded to /gameserver)
 
 Hint: if you use the `mod` ENV you must adjust the Startup Comand and have to add `+set fs_game mods/yourmod`
 
 ## 📁 Multiple Servers
 
-If you want to host multiple servers, create a new container then create inside your config folder different dirs and change `+set fs_homepath config/` to `config/server1` the next to `config/server1`. Create Configs inside the dirs and spin up the container. 
+If you want to host multiple servers, create a new container then create inside your config folder different dirs and change `+set fs_homepath config/default` to `config/server2` the next to `config/server3`. Create Configs or copy the config from `default` Server inside the dirs and spin up the container. 
 
 ```
 ── /config
  ├──> server1 (e.g call of duty 4 ranked)
- ├──────> main/server.cfg
+ ├──────> ranked/server.cfg
  ├──> server2 (e.g call of duty 4 unranked)
- ├──────> main/server.cfg
+ ├──────> unranked/server.cfg
  ├──> server3 (e.g Modded Server)
- └──────> main/server.cfg & yourmod/mod.cfg or mod.cfg
+ └──────> yourmod/server.cfg & yourmod/mod.cfg or mod.cfg
 ```
 
 Open needed Ports in your firewall! Default Ports: 28960/tcp 28960/udp
